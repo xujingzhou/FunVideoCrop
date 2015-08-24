@@ -1,5 +1,5 @@
 # FunVideoCrop
-Freely painted area in a video, the software will automatically be cut out.
+Freely painted area in a video, the software will automatically be cut out. Tested on iPhone 4 and iPhone 5S.
 
 Johnny Xu(徐景周)  
 Future Studio
