@@ -5,4 +5,4 @@ Johnny Xu(徐景周)
 Future Studio
 
 Target:  
-<img src="https://github.com/xujingzhou/FunVideoCrop/blob/master/Resource/Demo/Demo.gif" width = "300" height = "500" alt="Target" align=center />
+<img src="https://github.com/xujingzhou/FunVideoCrop/blob/master/Resource/Demo/Demo.gif" width = "300" height = "400" alt="Target" align=center />
