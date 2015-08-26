@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>C4BB9CBE-1451-4E2F-AE40-3290C30550E3</string>
+	<key>IDESourceControlProjectName</key>
+	<string>FunVideoCrop</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>AF2D3E82F53F46360369A8FF1777F343343AF322</key>
+		<string>https://github.com/xujingzhou/FunVideoCrop.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>FunVideoCrop.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>AF2D3E82F53F46360369A8FF1777F343343AF322</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/xujingzhou/FunVideoCrop.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>AF2D3E82F53F46360369A8FF1777F343343AF322</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>AF2D3E82F53F46360369A8FF1777F343343AF322</string>
+			<key>IDESourceControlWCCName</key>
+			<string>FunVideoCrop(1.1)</string>
+		</dict>
+	</array>
+</dict>
+</plist>
