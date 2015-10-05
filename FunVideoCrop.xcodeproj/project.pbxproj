@@ -861,7 +861,7 @@
 		B27CEBAC1B3BCDEE0062A133 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Future Studio";
 				TargetAttributes = {
 					B27CEBB31B3BCDEE0062A133 = {
@@ -1118,6 +1118,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1190,6 +1191,7 @@
 				INFOPLIST_FILE = FunVideoCrop/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.johnnyxu.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "da6b810a-68e4-428e-9b53-0285c89e4841";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1207,6 +1209,7 @@
 				INFOPLIST_FILE = FunVideoCrop/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.johnnyxu.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "1df84ff9-a0d9-4dfb-afe4-5fd6c11fc71d";
 				TARGETED_DEVICE_FAMILY = 1;
