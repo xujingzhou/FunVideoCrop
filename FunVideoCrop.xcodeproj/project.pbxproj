@@ -1193,7 +1193,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.johnnyxu.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "da6b810a-68e4-428e-9b53-0285c89e4841";
+				PROVISIONING_PROFILE = "9ea3a819-88f4-4522-b6b7-8df946722bee";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1211,7 +1211,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.johnnyxu.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1df84ff9-a0d9-4dfb-afe4-5fd6c11fc71d";
+				PROVISIONING_PROFILE = "073ee01a-c8cb-4800-bf2c-0e5e3ca0d030";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
