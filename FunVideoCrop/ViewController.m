@@ -24,8 +24,8 @@
 #import "NSString+Height.h"
 
 #define MaxVideoLength MAX_VIDEO_DUR
-
 #define DemoVideoName @"Demo.mp4"
+#define MaxRunCount 30
 
 @interface ViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, PBJVideoPlayerControllerDelegate, SKStoreProductViewControllerDelegate, DKHorizontalColorPickerDelegate>
 {
@@ -337,7 +337,7 @@
     [self defaultVideoSetting:url];
     
     // Hint to draw clipping area
-    if ([self getAppRunCount] < 6 && [self getNextStepRunCondition])
+    if ([self getAppRunCount] < MaxRunCount && [self getNextStepRunCondition])
     {
         if (_popTipView)
         {
@@ -349,7 +349,7 @@
     }
     
     // Hint to next step
-//    if ([self getAppRunCount] < 6 && [self getNextStepRunCondition])
+//    if ([self getAppRunCount] < MaxRunCount && [self getNextStepRunCondition])
 //    {
 //        if (_popTipView)
 //        {
@@ -749,8 +749,7 @@
 - (void)addAppRunCount
 {
     NSUInteger appRunCount = [self getAppRunCount];
-    NSInteger limitCount = 6;
-    if (appRunCount < limitCount)
+    if (appRunCount < MaxRunCount)
     {
         ++appRunCount;
         NSString *appRunCountKey = @"AppRunCount";
@@ -999,8 +998,8 @@
     [self createColorPicker];
     
     // Hint
-    NSInteger appRunCount = [self getAppRunCount], maxRunCount = 6;
-    if (appRunCount < maxRunCount)
+    NSInteger appRunCount = [self getAppRunCount];
+    if (appRunCount < MaxRunCount)
     {
         [self createPopTipView];
     }
@@ -1018,6 +1017,22 @@
     [super viewDidAppear:animated];
     
     [self createNavigationBar];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    // Disable system sleep
+    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    // Enable system sleep
+    [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
 }
 
 - (void)didReceiveMemoryWarning
