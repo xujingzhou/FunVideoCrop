@@ -55,6 +55,8 @@
 @property (nonatomic, strong) DKHorizontalColorPicker *horizonPicker;
 @property (nonatomic, strong) UILabel *bgColorLabel;
 
+@property (nonatomic, assign) BOOL isPickBackgroundImage;
+
 @end
 
 @implementation ViewController
@@ -282,6 +284,13 @@
         NSURL *url = [info objectForKey:UIImagePickerControllerMediaURL];
         [self setPickedVideo:url];
     }
+    else if([mediaType isEqualToString:@"public.image"])
+    {
+        UIImage *selectedImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+        selectedImage = imageFixOrientation(selectedImage);
+        [self setPickedImage:selectedImage];
+        [self pickMusicFromCustom];
+    }
     else
     {
         NSLog(@"Error media type");
@@ -292,6 +301,17 @@
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [picker dismissViewControllerAnimated:NO completion:nil];
+    
+    if (_isPickBackgroundImage)
+    {
+        [self saveBackgroundImage:nil];
+        [self pickMusicFromCustom];
+    }
+}
+
+- (void)setPickedImage:(UIImage *)image
+{
+    [self saveBackgroundImage:image];
 }
 
 - (void)setPickedVideo:(NSURL *)url
@@ -361,9 +381,32 @@
 //    }
 }
 
+#pragma mark - pickBackgroundImageFromPhotosAlbum
+- (void)pickBackgroundImageFromPhotosAlbum
+{
+    _isPickBackgroundImage = YES;
+    [self pickImageFromPhotoAlbum];
+}
+
+- (void)pickImageFromPhotoAlbum
+{
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = NO;
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary])
+    {
+        // Only a photo
+        picker.mediaTypes = [NSArray arrayWithObjects: @"public.image", nil];
+    }
+    
+    [self presentViewController:picker animated:YES completion:nil];
+}
+
 #pragma mark - pickBackgroundVideoFromPhotosAlbum
 - (void)pickBackgroundVideoFromPhotosAlbum
 {
+    _isPickBackgroundImage = NO;
     [self pickVideoFromPhotoAlbum];
 }
 
@@ -371,11 +414,11 @@
 {
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
-    picker.allowsEditing = YES;
+    picker.allowsEditing = NO;
     picker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
     {
-        // Only movie
+        // Only a movie
         NSArray* availableMedia = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
         picker.mediaTypes = [NSArray arrayWithObject:availableMedia[1]];
     }
@@ -745,7 +788,14 @@
 }
 
 #pragma mark - NSUserDefaults
-#pragma mark - AppRunCount
+// Background Image
+- (void)saveBackgroundImage:(UIImage *)image
+{
+    NSString *flag = @"BackgroundImage";
+    saveImageToNSUserDefaults(image, flag);
+}
+
+// AppRunCount
 - (void)addAppRunCount
 {
     NSUInteger appRunCount = [self getAppRunCount];
@@ -773,7 +823,7 @@
     return appRunCount;
 }
 
-#pragma mark - PathPoints
+// PathPoints
 - (void)setPathPoints:(NSArray *)pathPoints
 {
     NSString *flag = @"ArrayPathPoints";
@@ -791,7 +841,7 @@
     [userDefaultes synchronize];
 }
 
-#pragma mark - OutputBGColor
+// OutputBGColor
 - (void)setOutputBGColor:(UIColor*)color
 {
     NSString *flag = @"OutputBGColor";
@@ -944,7 +994,7 @@
 {
     NSString *fontName = GBLocalizedString(@"FontName");
     CGFloat fontSize = 18;
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:GBLocalizedString(@"Crop") style:UIBarButtonItemStylePlain target:self action:@selector(pickMusicFromCustom)];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:GBLocalizedString(@"Crop") style:UIBarButtonItemStylePlain target:self action:@selector(pickBackgroundImageFromPhotosAlbum)];
     [rightItem setTitleTextAttributes:@{NSForegroundColorAttributeName:kBrightBlue, NSFontAttributeName:[UIFont fontWithName:fontName size:fontSize]} forState:UIControlStateNormal];
     self.navigationItem.rightBarButtonItem = rightItem;
     

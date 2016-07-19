@@ -11,7 +11,8 @@
 #import "PNDCreatePandaPath.h"
 
 @interface CustomVideoCompositor()
-
+{
+}
 
 @end
 
@@ -107,14 +108,24 @@
     CGRect rectVideo = CGRectZero;
     rectVideo.size = CGSizeMake(width, height);
     
-    // Fill background
-    UIColor *bgColor = kLightBlue;
-    if ([self getOutputBGColor])
+    UIImage *bkImage = [self getBackgroundImage];
+    if (bkImage)
     {
-        bgColor = [self getOutputBGColor];
+        // Draw background image
+        CGImageRef bkImageRef = bkImage.CGImage;
+        CGContextDrawImage(gc, rectVideo, bkImageRef);
     }
-    CGContextSetFillColorWithColor(gc, bgColor.CGColor);
-    CGContextFillRect(gc, rectVideo);
+    else
+    {
+        // Fill background color
+        UIColor *bgColor = kLightBlue;
+        if ([self getOutputBGColor])
+        {
+            bgColor = [self getOutputBGColor];
+        }
+        CGContextSetFillColorWithColor(gc, bgColor.CGColor);
+        CGContextFillRect(gc, rectVideo);
+    }
     
     // Path points
     NSArray *pointsPath = [self getPathPoints];
@@ -288,6 +299,18 @@ CGImageRef CGImageRotated(CGImageRef originalCGImage, double radians)
 }
 
 #pragma mark - NSUserDefaults
+- (UIImage*)getBackgroundImage
+{
+    UIImage *image = nil;
+    NSString *flag = @"BackgroundImage";
+    if (isImageFromNSUserDefaults(flag))
+    {
+        image = getImageFromNSUserDefaults(flag);
+    }
+    
+    return image;
+}
+
 #pragma mark - PathPoints
 - (NSArray *)getPathPoints
 {

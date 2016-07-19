@@ -365,7 +365,51 @@ static inline CGRect getCroppedBounds(NSArray *points)
     return croppedRect;
 }
 
-#pragma mark - Save Image
+#pragma mark - Save Image to NSUserDefaults
+static inline void saveImageToNSUserDefaults(UIImage *image, NSString *key)
+{
+    NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
+    if (image)
+    {
+        [preferences setObject:UIImageJPEGRepresentation(image, 0.5) forKey:key];
+    }
+    else
+    {
+        [preferences removeObjectForKey:key];
+    }
+    [preferences synchronize];
+}
+
+static inline BOOL isImageFromNSUserDefaults(NSString *key)
+{
+    NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
+    NSData *imageData = [preferences objectForKey:key];
+    if (imageData)
+    {
+        return YES;
+    }
+    
+    return NO;
+}
+
+static inline UIImage* getImageFromNSUserDefaults(NSString *key)
+{
+    NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
+    NSData *imageData = [preferences objectForKey:key];
+    UIImage *image = nil;
+    if (imageData)
+    {
+        image = [UIImage imageWithData:imageData];
+    }
+    else
+    {
+        NSLog(@"Image is empty from NSUserDefaults.");
+    }
+    
+    return image;
+}
+
+#pragma mark - Save Image to Local
 static inline NSString* getTempImageOutputFile()
 {
     NSString *path = NSTemporaryDirectory();
@@ -382,6 +426,7 @@ static inline BOOL saveImage(UIImage *image)
     NSData *data = UIImageJPEGRepresentation(image, 0.8);
     NSString *imageOutputFile = getTempImageOutputFile();
     unlink([imageOutputFile UTF8String]);
+    
     NSLog(@"Save Image: %@", imageOutputFile);
     return [data writeToFile:imageOutputFile atomically:YES];
 }
@@ -571,7 +616,7 @@ static inline UIImage* imageFromSampleBuffer(CMSampleBufferRef sampleBuffer)
     return image;
 }
 
-static inline UIImage* imageFixOrientation(UIImage* image)
+static inline UIImage* imageFixOrientation(UIImage *image)
 {
     UIImageOrientation imageOrientation = [image imageOrientation];
     if (imageOrientation == UIImageOrientationUp)
