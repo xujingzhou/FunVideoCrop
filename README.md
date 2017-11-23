@@ -6,5 +6,5 @@ Freely painted area in a video, the software will automatically be cut out. Test
 Johnny Xu(徐景周)  
 Future Studio
 
-Target:  
+E.g.  
 <img src="https://github.com/xujingzhou/FunVideoCrop/blob/master/Resource/Demo/Demo.gif" width = "300" height = "400" alt="Target" align=center />
